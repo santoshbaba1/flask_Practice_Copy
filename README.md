@@ -1,3 +1,4 @@
+<img width="1365" height="767" alt="mongodb" src="https://github.com/user-attachments/assets/4e0e67d1-9eab-4924-803e-140285a49285" />
 # Student Registration System
 
 A simple **Flask** web application to manage student records with **MongoDB** as the backend database. Users can **add, view, update, and delete** student details.
@@ -119,6 +120,9 @@ Form pre-filled with student details.
 * Make sure MongoDB is running and accessible via the URI in `.env`
 * Delete action includes a confirmation page to prevent accidental deletion
 * Uses `ObjectId` from `bson` to work with MongoDB document IDs
+
+- <img width="1365" height="767" alt="mongodb" src="https://github.com/user-attachments/assets/3527b924-0db9-4c50-a51d-212d06255e57" />
+
 
 ---
 
