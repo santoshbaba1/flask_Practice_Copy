@@ -51,16 +51,5 @@ pipeline {
                 '''
             }
         }
-        post {
-        success {
-            mail to: 'santoshbaba1@rediffmail.com',
-                 subject: "SUCCESS: Build #${BUILD_NUMBER}",
-                 body: "Flask app deployed successfully on port ${PORT}"
-        }
-        failure {
-            mail to: 'santoshbaba1@rediffmail.com',
-                 subject: "FAILED: Build #${BUILD_NUMBER}",
-                 body: "Build failed. Check Jenkins logs."
-        }
     }
 }
