@@ -27,12 +27,12 @@ pipeline {
                 '''
             }
         }
-            stage('Test') {
-                steps {
-                    sh '''
-                    $VENV/bin/activate
-                    pytest
-                    '''
+        stage('Test') {
+            steps {
+                sh '''
+                $VENV/bin/activate
+                pytest
+                '''
             }
         }
     }
