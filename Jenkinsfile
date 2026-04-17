@@ -20,7 +20,7 @@ pipeline {
                 sh '''
                 # Create virtual environment
                 python3 -m venv $VENV
-                . venv/bin/activate
+                $VENV/bin/activate
                 # Install dependencies using full path (IMPORTANT FIX)
                 $VENV/bin/pip install --upgrade pip
                 $VENV/bin/pip install -r requirements.txt
@@ -30,7 +30,7 @@ pipeline {
             stage('Test') {
                 steps {
                     sh '''
-                    . $VENV/bin/activate
+                    $VENV/bin/activate
                     pytest
                     '''
             }
