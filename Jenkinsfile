@@ -27,5 +27,13 @@ pipeline {
                 '''
             }
         }
+            stage('Test') {
+                steps {
+                    sh '''
+                    . $VENV/bin/activate
+                    pytest
+                    '''
+            }
+        }
     }
 }
