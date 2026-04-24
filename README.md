@@ -66,7 +66,7 @@ bson
 Create a `.env` file in the project root:
 
 ```
-MONGO_URI=mongodb+srv://santosharma:2TNVQGuJsJvRy0pT@travelmemorydb.0kzvz9q.mongodb.net/studentDB
+MONGO_URI=mongodb+srv://santosharma:2TNVQGuJvJsRy0pT@travelmemorydb.0kzvz9q.mongodb.net/studentDB
 
 ```
 
