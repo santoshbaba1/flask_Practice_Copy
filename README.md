@@ -133,6 +133,276 @@ Form pre-filled with student details.
   
     docker run -d -p 5000:5000 flask-app:1.0
 ## License
+***********************************************************************************************************
+# 🚀 Flask CI/CD Pipeline using Jenkins
+
+## 📌 Project Overview
+
+This project demonstrates how to implement a **CI/CD (Continuous Integration & Continuous Deployment) pipeline** using **Jenkins** for a Python Flask web application.
+
+The pipeline automates:
+
+* Code checkout from GitHub
+* Dependency installation
+* Unit testing using pytest
+* Application deployment
+* Basic health check
+
+---
+
+## 🛠️ Tech Stack
+
+* Python 3.x
+* Flask
+* Jenkins
+* Git & GitHub
+* Pytest
+
+---
+
+## 📂 Project Structure
+
+```
+flask_Practice_Copy/
+│── app.py
+│── requirements.txt
+│── Jenkinsfile
+│── tests/
+│   └── test_app.py
+│── README.md
+```
+
+---
+
+## ⚙️ Prerequisites
+
+Ensure the following are installed on your Jenkins server:
+
+* Jenkins
+* Python 3
+* pip
+* Git
+
+Install dependencies:
+
+```bash
+apt update -y
+apt install -y python3 python3-pip python3-venv git
+```
+
+---
+
+## 🔄 CI/CD Pipeline Stages
+
+### 1️⃣ Checkout Code
+
+* Pulls latest code from GitHub repository (`main` branch)
+
+### 2️⃣ Build
+
+* Creates Python virtual environment
+* Installs dependencies from `requirements.txt`
+
+### 3️⃣ Test
+
+* Runs unit tests using pytest
+
+### 4️⃣ Deploy
+
+* Stops previous Flask app (if running)
+* Starts new instance of Flask application
+
+### 5️⃣ Health Check
+
+* Verifies application is running on port 5000
+
+---
+
+## 🧾 Jenkinsfile
+
+```groovy
+pipeline {
+    agent any
+
+    options {
+        skipDefaultCheckout(true)
+    }
+
+    environment {
+        VENV = "venv"
+    }
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/santoshbaba1/flask_Practice_Copy.git'
+                    ]]
+                ])
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh '''
+                python3 -m venv $VENV
+                . $VENV/bin/activate
+                pip install -r requirements.txt
+                '''
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh '''
+                . $VENV/bin/activate
+                pytest
+                '''
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh '''
+                pkill -f app.py || true
+                nohup python3 app.py > app.log 2>&1 &
+                '''
+            }
+        }
+
+        stage('Health Check') {
+            steps {
+                sh 'sleep 5'
+                sh 'curl -I http://localhost:5000 || true'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Build SUCCESS ✅"
+        }
+        failure {
+            echo "Build FAILED ❌"
+        }
+    }
+}
+```
+
+---
+
+## 🔔 Build Trigger (Automation)
+
+Pipeline is triggered automatically using **GitHub Webhooks**.
+
+### Setup:
+
+1. Go to GitHub → Settings → Webhooks
+2. Add webhook:
+
+```
+http://<jenkins-url>/github-webhook/
+```
+
+3. Select:
+
+* Content type: `application/json`
+* Trigger: Push events
+
+---
+
+## 📧 Notifications
+
+Email notifications are configured in Jenkins for:
+
+* Build Success
+* Build Failure
+
+SMTP configuration is required in:
+**Manage Jenkins → Configure System**
+
+---
+
+## 🚀 How to Run Project Locally
+
+```bash
+git clone https://github.com/santoshbaba1/flask_Practice_Copy.git
+cd flask_Practice_Copy
+
+python3 -m venv venv
+source venv/bin/activate
+
+pip install -r requirements.txt
+python app.py
+```
+
+Access application:
+
+```
+http://localhost:5000
+```
+
+---
+
+## 📸 Screenshots (To be Added)
+
+Include the following screenshots:
+
+* Jenkins Pipeline Stage View
+* Successful Build Console Output
+* Failed Build (optional)
+
+---
+
+## 🎯 Key Features
+
+✅ Automated CI/CD pipeline
+✅ Branch-based trigger (`main`)
+✅ Virtual environment usage (PEP 668 compliant)
+✅ Zero-downtime deployment (basic restart)
+✅ Health check validation
+
+---
+
+## 🧠 Challenges & Solutions
+
+| Issue                            | Solution                 |
+| -------------------------------- | ------------------------ |
+| Branch mismatch (master vs main) | Configured `*/main`      |
+| pip install error (PEP 668)      | Used virtual environment |
+| Jenkins workspace issues         | Cleaned workspace        |
+| Email failure                    | Configured SMTP          |
+
+---
+
+## 🔮 Future Enhancements
+
+* Docker containerization
+* Kubernetes deployment
+* AWS EC2 hosting
+* CI/CD with GitHub Actions
+* SonarQube integration
+
+---
+
+## 👨‍💻 Author
+
+**Santosh Kumar Sharma**
+DevOps & Cloud Enthusiast
+
+---
+
+## 📌 Repository Link
+
+👉 https://github.com/santoshbaba1/flask_Practice_Copy.git
+
+---
+
+***********************************************************************************************************
 
 MIT License
 
