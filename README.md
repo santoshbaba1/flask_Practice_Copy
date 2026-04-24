@@ -197,7 +197,7 @@ apt install -y python3 python3-pip python3-venv git
 ---
 
 ## 🔄 CI/CD Pipeline Stages
-
+  - <img width="1536" height="1024" alt="uncle jenkins" src="https://github.com/user-attachments/assets/6e3a508a-0efb-407f-8e11-db9b6e7571b2" />
 ### 1️⃣ Checkout Code
 
 * Pulls latest code from GitHub repository (`main` branch)
