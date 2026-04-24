@@ -2,6 +2,10 @@
 
 A simple **Flask** web application to manage student records with **MongoDB** as the backend database. Users can **add, view, update, and delete** student details.
 
+# Flask CI/CD pipeline architecture diagram
+
+<img width="1536" height="1024" alt="uncle jenkins" src="https://github.com/user-attachments/assets/186ebc86-1058-4f23-9187-322bf5cbfa59" />
+
 ---
 
 ## Features
