@@ -46,7 +46,7 @@ pipeline {
             steps {
                 sh '''
                     sleep 5
-                    curl -f http://192.168.1.9:$PORT || exit 1
+                    curl -f http://localhost:$PORT || exit 1
                 '''
             }
         }
