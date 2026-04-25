@@ -1,35 +1,46 @@
-#   Flask CI/CD Pipeline using Jenkins
+#  Jenkins CI/CD Pipeline for Flask Application
 
 ##  Project Overview
 
-This project demonstrates how to implement a **CI/CD (Continuous Integration & Continuous Deployment) pipeline** using **Jenkins** for a Python Flask web application.
+This project demonstrates the implementation of a **CI/CD (Continuous Integration & Continuous Deployment)** pipeline using **Jenkins** for a Python Flask web application.
 
 The pipeline automates:
 
 * Code checkout from GitHub
 * Dependency installation
 * Unit testing using pytest
-* Application deployment
-* Basic health check
+* Application deployment to a staging environment
+* Build notifications via email
 
-##  CI/CD Pipeline Stages
-  - <img width="1536" height="1024" alt="uncle jenkins" src="https://github.com/user-attachments/assets/6e3a508a-0efb-407f-8e11-db9b6e7571b2" />
+
+<img width="1536" height="1024" alt="uncle jenkins" src="https://github.com/user-attachments/assets/67df3396-a98d-47ac-b7ec-30828b14e896" />
+
 ---
 
-##  Tech Stack
+## 🔗 Repository
 
-* Python 3.x
+👉 Source Repository: https://github.com/mohanDevOps-arch/flask_Practice.git
+
+👉 Forked Repository (Submission):
+`<Add your forked repo link here>`
+
+---
+
+## 🛠️ Tech Stack
+
+* Python 3
 * Flask
 * Jenkins
 * Git & GitHub
 * Pytest
+* Linux (Ubuntu)
 
 ---
 
-## Project Structure
+## 📂 Project Structure
 
-```
-flask_Practice_Copy/
+```id="6k2p2q"
+flask_Practice/
 │── app.py
 │── requirements.txt
 │── Jenkinsfile
@@ -40,58 +51,52 @@ flask_Practice_Copy/
 
 ---
 
-##  Prerequisites
+## ⚙️ Prerequisites
 
-Install dependencies:
+Ensure the following are installed on your Jenkins server:
 
-```bash
-apt update -y
-apt install -y python3 python3-pip python3-venv git
+* Jenkins
+* Python 3
+* pip
+* Git
+
+### Install Dependencies
+
+```bash id="2r7j0p"
+sudo apt update -y
+sudo apt install -y python3 python3-pip python3-venv git
 ```
 
 ---
 
+# The Jenkins pipeline includes the following stages:
 
-###  Checkout Code
+## Checkout Code
 
-* Pulls latest code from GitHub repository (`main` branch)
-       https://github.com/santoshbaba1/flask_Practice_Copy.git
+* Pulls the latest code from the `main` branch of GitHub repository
 
-###  Build
+## Build Stage
 
-    git clone https://github.com/santoshbaba1/flask_Practice_Copy.git
-    cd flask_Practice_Copy
-# Creates Python virtual environment
-    python3 -m venv venv
-    source venv/bin/activate
+* Creates a Python virtual environment
+* Installs dependencies using `requirements.txt`
 
-    pip install -r requirements.txt
-    python app.py
+## Test Stage
 
-###  Test
+* Executes unit tests using pytest
+* Ensures code quality before deployment
 
-* Runs unit tests using pytest
+## Deploy Stage
 
-###  Deploy
-
-* Stops previous Flask app (if running)
-* Starts new instance of Flask application
-
-###  Health Check
-
-* Verifies application is running on port 5000
+* Stops any existing application instance
+* Starts the Flask application
 
 ---
 
-##  Jenkinsfile
+## 🧾 Jenkinsfile
 
-```groovy
+```groovy id="fy4g9n"
 pipeline {
     agent any
-
-    options {
-        skipDefaultCheckout(true)
-    }
 
     environment {
         VENV = "venv"
@@ -99,15 +104,9 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
-                checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: '*/main']],
-                    userRemoteConfigs: [[
-                        url: 'https://github.com/santoshbaba1/flask_Practice_Copy.git'
-                    ]]
-                ])
+                git branch: 'main', url: 'https://github.com/mohanDevOps-arch/flask_Practice.git'
             }
         }
 
@@ -116,6 +115,7 @@ pipeline {
                 sh '''
                 python3 -m venv $VENV
                 . $VENV/bin/activate
+                pip install --upgrade pip
                 pip install -r requirements.txt
                 '''
             }
@@ -138,21 +138,22 @@ pipeline {
                 '''
             }
         }
-
-        stage('Health Check') {
-            steps {
-                sh 'sleep 5'
-                sh 'curl -I http://localhost:5000 || true'
-            }
-        }
     }
 
     post {
         success {
-            echo "Build SUCCESS ✅"
+            emailext (
+                to: 'your-email@example.com',
+                subject: "SUCCESS: Jenkins Build ${BUILD_NUMBER}",
+                body: "Build Successful!"
+            )
         }
         failure {
-            echo "Build FAILED ❌"
+            emailext (
+                to: 'your-email@example.com',
+                subject: "FAILED: Jenkins Build ${BUILD_NUMBER}",
+                body: "Build Failed!"
+            )
         }
     }
 }
@@ -160,214 +161,112 @@ pipeline {
 
 ---
 
-##  Build Trigger (Automation)
+## 🔔 Pipeline Trigger Setup
 
-* Trigger: Push events
+The pipeline is configured to trigger automatically on code changes.
+
+### GitHub Webhook Configuration:
+
+1. Go to GitHub → Settings → Webhooks
+2. Add webhook:
+
+   ```
+   http://<jenkins-url>/github-webhook/
+   ```
+3. Content type: `application/json`
+4. Trigger: Push events
 
 ---
 
-## 📧 Notifications
+## 📧 Email Notification Setup
 
-Email notifications are configured in Jenkins for:
+Email notifications are configured using Jenkins Email Extension Plugin.
 
-* Build Success
-* Build Failure
+### SMTP Configuration:
 
-SMTP configuration is required in:
-**Manage Jenkins → Configure System**
+* SMTP Server: `smtp.gmail.com`
+* Port: `587`
+* TLS: Enabled
+* Authentication: Gmail App Password
 
 ---
 
-##  How to Run Project Locally
+## 🚀 Run Application Locally
 
-```bash
+```bash id="w0p93h"
+git clone https://github.com/mohanDevOps-arch/flask_Practice.git
+cd flask_Practice
 
+python3 -m venv venv
+source venv/bin/activate
+
+pip install -r requirements.txt
+python app.py
 ```
 
-Access application:
+Access the application:
 
-```
+```id="2m55z5"
 http://localhost:5000
 ```
 
 ---
 
-## 📸 Screenshots (To be Added)
+## 📸 Screenshots (Add for Submission)
 
 Include the following screenshots:
 
-* Jenkins Pipeline Stage View
-* Successful Build Console Output
-* Failed Build (optional)
+* ✅ Jenkins Dashboard
+* ✅ Pipeline Stage View (Build, Test, Deploy)
+* ✅ Console Output Logs
+* ✅ Application Running in Browser
 
 ---
 
-##  Key Features
+## 🎯 Key Features
 
- Automated CI/CD pipeline
- Branch-based trigger (`main`)
- Virtual environment usage
- Zero-downtime deployment 
- Health check validation
-
----
-
-##  Challenges & Solutions
-
-| Issue                            | Solution                 |
-| -------------------------------- | ------------------------ |
-| Branch mismatch (master vs main) | Configured `*/main`      |
-| pip install error (PEP 668)      | Used virtual environment |
-| Jenkins workspace issues         | Cleaned workspace        |
-| Email failure                    | Configured SMTP          |
+* Automated CI/CD pipeline using Jenkins
+* GitHub integration with webhook trigger
+* Virtual environment (PEP 668 compliant)
+* Automated testing with pytest
+* Email notifications for build status
 
 ---
 
-##  Future Enhancements
+## 🧠 Challenges & Solutions
+
+| Issue                                              | Solution                   |
+| -------------------------------------------------- | -------------------------- |
+| pip install error (externally-managed-environment) | Used virtual environment   |
+| Branch mismatch (master vs main)                   | Configured correct branch  |
+| Email notification failure                         | Configured SMTP with Gmail |
+| Jenkins workspace issues                           | Cleaned workspace          |
+
+---
+
+## 🔮 Future Enhancements
 
 * Docker containerization
 * Kubernetes deployment
 * AWS EC2 hosting
-* CI/CD with GitHub Actions
+* CI/CD using GitHub Actions
 * SonarQube integration
 
-# Student Registration System
+---
 
-A simple **Flask** web application to manage student records with **MongoDB** as the backend database. Users can **add, view, update, and delete** student details.
+## 👨‍💻 Author
 
-# Flask CI/CD pipeline architecture diagram
-
-<img width="1536" height="1024" alt="uncle jenkins" src="https://github.com/user-attachments/assets/186ebc86-1058-4f23-9187-322bf5cbfa59" />
+**Santosh Kumar Sharma**
+DevOps & Cloud Enthusiast
 
 ---
 
-## Features
+## 📌 Conclusion
 
-* List all students on the home page
-* Add a new student
-* Update existing student details
-* Delete a student with confirmation
-* Simple and responsive UI using Bootstrap
+This project successfully demonstrates a **fully automated CI/CD pipeline** for a Flask application using Jenkins, ensuring faster and reliable software delivery.
 
 ---
 
-## Tech Stack
-
-* Python, Flask
-* MongoDB (via Flask-PyMongo)
-* Environment Variables:** Managed via `.env` file
-
----
-
-## Setup Instructions
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/mohanDevOps-arch/flask_Practice.git
-cd flask_Practice
-```
-
-<img width="1365" height="763" alt="code push" src="https://github.com/user-attachments/assets/a3d9d181-16bb-4b57-a60d-d751ddc6aa44" />
-
-
-### 2. Create and activate a virtual environment
-
-```bash
-python -m venv venv
-source venv/bin/activate
-```
-
-### 3. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-**`requirements.txt` example:**
-
-```
-Flask
-Flask-PyMongo
-python-dotenv
-bson
-```
-
-### 4. Configure environment variables
-
-Create a `.env` file in the project root:
-
-```
-MONGO_URI=mongodb+srv://santosharma:2TNVQGuJvJsRy0pT@travelmemorydb.0kzvz9q.mongodb.net/studentDB
-
-```
-
-### 5. Run the application
-
-```bash
-python app.py
-```
-
-Open your browser at: [http://localhost:5000](http://localhost:5000)
-
----
-
-## Project Structure
-<img width="1363" height="760" alt="app1" src="https://github.com/user-attachments/assets/1379aaa2-f4a0-4d72-812e-03021f9390ab" />
-
-```
-project/
-│
-├── templates/
-│   ├── base.html
-│   ├── index.html
-│   ├── add_student.html
-│   ├── update_student.html
-│
-├── app.py
-├── requirements.txt
-└── .env
-```
-
----
-
-## Screenshots
-
-**Home Page**
-Lists all students with Edit/Delete buttons.
-
-- <img width="1363" height="760" alt="app1" src="https://github.com/user-attachments/assets/44424662-e054-4a44-8eb3-28faf510caf6" />
-
-
-**Add Student**
-Form to add a new student.
-- <img width="1897" height="801" alt="image" src="https://github.com/user-attachments/assets/d65d25c3-ebb5-410a-adb1-e130ad7c5878" />
-
-- <img width="1363" height="760" alt="app1" src="https://github.com/user-attachments/assets/87966331-2606-4958-aa1a-4183ddf32ab9" />
-
-**Update Student**
-Form pre-filled with student details.
-- <img width="1361" height="752" alt="app reg" src="https://github.com/user-attachments/assets/e3c3979d-b23c-4d5e-a7ca-859854d7655c" />
-
-- <img width="1365" height="767" alt="app update" src="https://github.com/user-attachments/assets/88d74b1a-071e-4e83-9fe5-a5b3a1da09c5" />
-
----
-
-## Notes
-
-* Make sure MongoDB is running and accessible via the URI in `.env`
-* Delete action includes a confirmation page to prevent accidental deletion
-* Uses `ObjectId` from `bson` to work with MongoDB document IDs
-
-- <img width="1365" height="767" alt="mongodb" src="https://github.com/user-attachments/assets/3527b924-0db9-4c50-a51d-212d06255e57" />
-
-- <img width="1365" height="767" alt="docker build" src="https://github.com/user-attachments/assets/90c4fee9-7ed4-4da7-99ae-dd13aa29b2e7" />
-
-- <img width="1365" height="761" alt="docker build 1" src="https://github.com/user-attachments/assets/269c3a60-cc91-406a-b24b-87cf99951399" />
----
-**Final Working Command**
-  
-    docker run -d -p 5000:5000 flask-app:1.0
 ## License
 ***********************************************************************************************************
 
