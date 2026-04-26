@@ -90,6 +90,10 @@ sudo apt install -y python3 python3-pip python3-venv git
 * Stops any existing application instance
 * Starts the Flask application
 
+## Health Check Stage
+
+* Stops any existing application instance
+* Starts the Flask application
 ---
 
 ## 🧾 Jenkinsfile
