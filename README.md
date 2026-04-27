@@ -213,6 +213,7 @@ Email notifications are configured using Jenkins Email Extension Plugin.
     pip install -r requirements.txt
     python app.py
 ```
+##  Screenshots (Add for Submission)
 
 <img width="1365" height="486" alt="Uncle-1" src="https://github.com/user-attachments/assets/49298440-c8ae-49ee-bf02-ebde72fdba37" />
 <img width="1365" height="721" alt="local run" src="https://github.com/user-attachments/assets/cf8bf2c6-d35f-49e9-89eb-b8bd971cce31" />
@@ -235,24 +236,10 @@ Access the application:
     http://localhost:5000
 ```
 
----
-
-##  Screenshots (Add for Submission)
-
-Include the following screenshots:
-
-* ✅ Jenkins Dashboard
-* ✅ Pipeline Stage View (Build, Test, Deploy)
-* ✅ Console Output Logs
-* ✅ Application Running in Browser
-
----
-
 ##  Key Features
 
 * Automated CI/CD pipeline using Jenkins
-* GitHub integration with webhook trigger
-* Virtual environment (PEP 668 compliant)
+* Virtual environment 
 * Automated testing with pytest
 * Email notifications for build status
 
@@ -269,7 +256,7 @@ Include the following screenshots:
 
 ---
 
-## 🔮 Future Enhancements
+##  Future Enhancements
 
 * Docker containerization
 * Kubernetes deployment
