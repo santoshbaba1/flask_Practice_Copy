@@ -214,9 +214,6 @@ Email notifications are configured using Jenkins Email Extension Plugin.
     python app.py
 ```
 
-
-
-<img width="1368" height="719" alt="Uncle-2" src="https://github.com/user-attachments/assets/ec66fe0e-8d13-48cf-be44-757ff91b03bd" />
 <img width="1365" height="486" alt="Uncle-1" src="https://github.com/user-attachments/assets/49298440-c8ae-49ee-bf02-ebde72fdba37" />
 <img width="1365" height="721" alt="local run" src="https://github.com/user-attachments/assets/cf8bf2c6-d35f-49e9-89eb-b8bd971cce31" />
 <img width="1363" height="760" alt="app1" src="https://github.com/user-attachments/assets/4086abe8-9fdc-41fd-a112-86b96a85111c" />
