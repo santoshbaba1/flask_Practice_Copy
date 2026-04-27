@@ -101,9 +101,6 @@ sudo apt install -y python3 python3-pip python3-venv git
     - <img width="1298" height="673" alt="ci-cd" src="https://github.com/user-attachments/assets/8974e6a2-024a-46c7-a987-703afd34680e" />
 ---
 
-- <img width="1313" height="666" alt="email config" src="https://github.com/user-attachments/assets/c2fea158-7f04-4dfa-a491-263f21268576" />
-
-
 ## 🧾 Jenkinsfile
 
 ```groovy id="fy4g9n"
