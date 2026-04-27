@@ -213,7 +213,7 @@ Email notifications are configured using Jenkins Email Extension Plugin.
     pip install -r requirements.txt
     python app.py
 ```
-##  Screenshots (Add for Submission)
+##  Screenshots
 
 <img width="1365" height="486" alt="Uncle-1" src="https://github.com/user-attachments/assets/49298440-c8ae-49ee-bf02-ebde72fdba37" />
 <img width="1365" height="721" alt="local run" src="https://github.com/user-attachments/assets/cf8bf2c6-d35f-49e9-89eb-b8bd971cce31" />
