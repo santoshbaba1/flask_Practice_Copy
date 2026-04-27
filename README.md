@@ -19,10 +19,11 @@ The pipeline automates:
 
 ## 🔗 Repository
 
-👉 Source Repository: https://github.com/mohanDevOps-arch/flask_Practice.git
+* Source Repository:
+    -https://github.com/mohanDevOps-arch/flask_Practice.git
 
-👉 Forked Repository (Submission):
-`<Add your forked repo link here>`
+* Forked Repository (Submission):
+    `https://github.com/santoshbaba1/flask_Practice_Copy.git
 
 ---
 
@@ -165,11 +166,11 @@ pipeline {
 
 ---
 
-## 🔔 Pipeline Trigger Setup
+##  Pipeline Trigger Setup
 
 The pipeline is configured to trigger automatically on code changes.
 
-### GitHub Webhook Configuration:
+### GitHub Configuration:
 
 1. Go to GitHub → Settings → Webhooks
 2. Add webhook:
@@ -182,7 +183,7 @@ The pipeline is configured to trigger automatically on code changes.
 
 ---
 
-## 📧 Email Notification Setup
+##  Email Notification Setup
 
 Email notifications are configured using Jenkins Email Extension Plugin.
 
@@ -195,28 +196,28 @@ Email notifications are configured using Jenkins Email Extension Plugin.
 
 ---
 
-## 🚀 Run Application Locally
+##  Run Application Locally
 
 ```bash id="w0p93h"
-git clone https://github.com/mohanDevOps-arch/flask_Practice.git
-cd flask_Practice
+    git clone https://github.com/mohanDevOps-arch/flask_Practice.git
+    cd flask_Practice
 
-python3 -m venv venv
-source venv/bin/activate
+    python3 -m venv venv
+    source venv/bin/activate
 
-pip install -r requirements.txt
-python app.py
+    pip install -r requirements.txt
+    python app.py
 ```
 
 Access the application:
 
-```id="2m55z5"
-http://localhost:5000
+    ```id="2m55z5"
+    http://localhost:5000
 ```
 
 ---
 
-## 📸 Screenshots (Add for Submission)
+##  Screenshots (Add for Submission)
 
 Include the following screenshots:
 
@@ -227,7 +228,7 @@ Include the following screenshots:
 
 ---
 
-## 🎯 Key Features
+##  Key Features
 
 * Automated CI/CD pipeline using Jenkins
 * GitHub integration with webhook trigger
@@ -237,7 +238,7 @@ Include the following screenshots:
 
 ---
 
-## 🧠 Challenges & Solutions
+##  Challenges & Solutions
 
 | Issue                                              | Solution                   |
 | -------------------------------------------------- | -------------------------- |
@@ -258,48 +259,21 @@ Include the following screenshots:
 
 ---
 
-## 👨‍💻 Author
-
-**Santosh Kumar Sharma**
-DevOps & Cloud Enthusiast
-
----
-
-## 📌 Conclusion
+## Conclusion
 
 This project successfully demonstrates a **fully automated CI/CD pipeline** for a Flask application using Jenkins, ensuring faster and reliable software delivery.
 
 ---
 
 ## License
-***********************************************************************************************************
-
 ---
 
 ## 👨‍💻 Author
 
-**Santosh Kumar Sharma**
+**Santosh Kumar Sharma (12394)**
 DevOps & Cloud Enthusiast
 
----
 
-## 📌 Repository Link
-
-👉 https://github.com/santoshbaba1/flask_Practice_Copy.git
-
----
-
-***********************************************************************************************************
-
-MIT License
-
-
-Author
-
-Santosh Kumar Sharma (12394), Batch-15
-
-DevOps & Cloud Enthusiast
----
 
 
 
