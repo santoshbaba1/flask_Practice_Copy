@@ -38,7 +38,7 @@ The pipeline automates:
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```id="6k2p2q"
 flask_Practice/
@@ -52,7 +52,7 @@ flask_Practice/
 
 ---
 
-## ⚙️ Prerequisites
+##  Prerequisites
 
 Ensure the following are installed on your Jenkins server:
 
@@ -181,19 +181,6 @@ pipeline {
 ##  Pipeline Trigger Setup
 
 The pipeline is configured to trigger automatically on code changes.
-
-### GitHub Configuration:
-
-1. Go to GitHub → Settings → Webhooks
-2. Add webhook:
-
-   ```
-   http://<jenkins-url>/github-webhook/
-   ```
-3. Content type: `application/json`
-4. Trigger: Push events
-
----
 
 ##  Email Notification Setup
 
