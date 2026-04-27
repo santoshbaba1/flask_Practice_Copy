@@ -214,6 +214,24 @@ Email notifications are configured using Jenkins Email Extension Plugin.
     python app.py
 ```
 
+
+
+<img width="1368" height="719" alt="Uncle-2" src="https://github.com/user-attachments/assets/ec66fe0e-8d13-48cf-be44-757ff91b03bd" />
+<img width="1365" height="486" alt="Uncle-1" src="https://github.com/user-attachments/assets/49298440-c8ae-49ee-bf02-ebde72fdba37" />
+<img width="1365" height="721" alt="local run" src="https://github.com/user-attachments/assets/cf8bf2c6-d35f-49e9-89eb-b8bd971cce31" />
+<img width="1363" height="760" alt="app1" src="https://github.com/user-attachments/assets/4086abe8-9fdc-41fd-a112-86b96a85111c" />
+<img width="1361" height="752" alt="app reg" src="https://github.com/user-attachments/assets/9dbae9a9-b2e3-4e4f-a1a7-2885903bc005" />
+
+# Code Modify
+<img width="1362" height="711" alt="local run 1" src="https://github.com/user-attachments/assets/c3a7eaa3-4f23-4f0b-ba85-bee0f0ebc4ed" />
+<img width="1356" height="709" alt="local run 2" src="https://github.com/user-attachments/assets/428eea0e-b353-461c-9fcc-6c58db93693c" />
+
+
+<img width="1365" height="532" alt="local run 6" src="https://github.com/user-attachments/assets/cc917ad7-3d25-41ae-84fe-8ac001197fe4" />
+<img width="1357" height="705" alt="local run 4" src="https://github.com/user-attachments/assets/0e89b22f-e41b-4309-8beb-3c0343e5b980" />
+<img width="1357" height="431" alt="local run 3" src="https://github.com/user-attachments/assets/35fc3b3f-fab9-4487-87d8-0f2f965ac8c8" />
+
+
 Access the application:
 
     ```id="2m55z5"
