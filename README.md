@@ -105,23 +105,23 @@ pipeline {
 
     environment {
         VENV = "venv"
+        PORT = "5000"
     }
 
     stages {
-
-        stage('Checkout') {
+        stage('Clone Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/mohanDevOps-arch/flask_Practice.git'
+                git branch: 'main',
+                    url: 'https://github.com/santoshbaba1/flask_Practice_Copy.gi                                                      t'
             }
         }
 
         stage('Build') {
             steps {
                 sh '''
-                python3 -m venv $VENV
-                . $VENV/bin/activate
-                pip install --upgrade pip
-                pip install -r requirements.txt
+                    python3 -m venv $VENV
+                    $VENV/bin/pip install --upgrade pip
+                    $VENV/bin/pip install -r requirements.txt
                 '''
             }
         }
@@ -129,8 +129,8 @@ pipeline {
         stage('Test') {
             steps {
                 sh '''
-                . $VENV/bin/activate
-                pytest
+                    . $VENV/bin/activate
+                    pytest
                 '''
             }
         }
@@ -138,30 +138,42 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-                pkill -f app.py || true
-                nohup python3 app.py > app.log 2>&1 &
+                    pkill -f app.py || true
+                    nohup venv/bin/python3 app.py > app.log 2>&1 &
+                '''
+            }
+        }
+
+        stage('Health Check') {
+            steps {
+                sh '''
+                    sleep 5
+                    curl -f http://localhost:$PORT || exit 1
                 '''
             }
         }
     }
 
-    post {
+    post('Email Notification') {
         success {
             emailext (
-                to: 'your-email@example.com',
-                subject: "SUCCESS: Jenkins Build ${BUILD_NUMBER}",
-                body: "Build Successful!"
+                to: 'santoshpvt08@gmail.com',
+                subject: "SUCCESS: Build ${BUILD_NUMBER}",
+                body: "Build succeeded! Check: ${BUILD_URL}"
+
             )
         }
         failure {
             emailext (
-                to: 'your-email@example.com',
-                subject: "FAILED: Jenkins Build ${BUILD_NUMBER}",
-                body: "Build Failed!"
+                to: 'santoshpvt08@gmail.com',
+                subject: "FAILED: Build ${BUILD_NUMBER}",
+                body: "Build failed! Check: ${BUILD_URL}"
+
             )
         }
     }
 }
+
 ```
 
 ---
